@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo “My script is running.”
+
+# Your command is next.
+uptime
+
+echo "Done!"
