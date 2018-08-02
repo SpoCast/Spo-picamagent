@@ -4,13 +4,13 @@
 ### How to set up
 
   - Clone this repository to $HOME/source
-  - cp all the files to /usr/local/spocamuiagent
+  - cp all the files to /usr/local/spocamagent
   - Run the below commands
   
 #### Run via  NPM Command
 
 ```sh
-$ sudo cd rootdirectory /usr/local/spocamuiagen
+$ sudo cd rootdirectory /usr/local/spocamagent
 $ sudo npm install
 $ sudo service spocamagent restart 
 ```
