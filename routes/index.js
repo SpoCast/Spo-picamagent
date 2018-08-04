@@ -12,7 +12,7 @@ router.post('/camera', function (req, res, next) {
   const cmd = req.body.command.cmd
   if (cmd == "startStream") {
     const exec = require("child_process").exec
-    exec("~/picam/hooks/startpicamsession.sh " + streamName, (error, stdout, stderr) => {
+    exec("~/bin/startpicamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -25,7 +25,11 @@ router.post('/camera', function (req, res, next) {
     })
   } else if (cmd == "stopStream") {
     const exec = require("child_process").exec
+<<<<<<< HEAD
     exec("~/picam/hooks/stoppicamsession.sh " + streamName, (error, stdout, stderr) => {
+=======
+    exec("~/bin/stoppicamsession.sh "+ streamName, (error, stdout, stderr) => {
+>>>>>>> a88056cd4f38d8b32850e6de23278f0458e33399
       if (error) {
         console.log('Error', error)
         res.json(stdout);

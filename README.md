@@ -3,15 +3,16 @@
 
 ### How to set up
 
-  - Clone this repository
+  - Clone this repository to $HOME/source
+  - cp all the files to /usr/local/spocamagent
   - Run the below commands
   
 #### Run via  NPM Command
 
 ```sh
-$ cd rootdirectory
-$ npm install
-$ npm start
+$ sudo cd rootdirectory /usr/local/spocamagent
+$ sudo npm install
+$ sudo service spocamagent restart 
 ```
 #### Run via  PM2 
 
