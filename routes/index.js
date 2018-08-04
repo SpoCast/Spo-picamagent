@@ -25,11 +25,7 @@ router.post('/camera', function (req, res, next) {
     })
   } else if (cmd == "stopStream") {
     const exec = require("child_process").exec
-<<<<<<< HEAD
-    exec("~/picam/hooks/stoppicamsession.sh " + streamName, (error, stdout, stderr) => {
-=======
-    exec("~/bin/stoppicamsession.sh "+ streamName, (error, stdout, stderr) => {
->>>>>>> a88056cd4f38d8b32850e6de23278f0458e33399
+    exec("~/bin/stoppicamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -42,8 +38,6 @@ router.post('/camera', function (req, res, next) {
 
     })
   }
-
-
 })
 
 router.post('/preview', function (req, res) {
@@ -51,14 +45,14 @@ router.post('/preview', function (req, res) {
   const streamName = req.body.command.cmdPayload.stream.name
   if (cmd == "startPreview") {
     const exec = require("child_process").exec
-    exec("~/picam/hooks/startpistreamsession.sh " + streamName, (error, stdout, stderr) => {
+    exec("~/bin/startpistreamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         //res.json({statusCode:200});
         res.json(stdout);
       } else if (stderr) {
         console.log('Error', stderr)
-        
+
         res.json(stderr);
       } else {
         res.json({statusCode:200});
@@ -66,7 +60,7 @@ router.post('/preview', function (req, res) {
     })
   } else {
     const exec = require("child_process").exec
-    exec("~/picam/hooks/stoppistreamsession.sh "+streamName, (error, stdout, stderr) => {
+    exec("~/bin/stoppistreamsession.sh "+streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -84,7 +78,7 @@ router.post('/rec', function (req, res, next) {
   const cmd = req.body.command.cmd
   if (cmd === "startRec") {
     const exec = require("child_process").exec
-    exec("~/picam/hooks/start_record", (error, stdout, stderr) => {
+    exec("~/bin/start_record", (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -97,7 +91,7 @@ router.post('/rec', function (req, res, next) {
     })
   } else if (cmd === "stopRec") {
     const exec = require("child_process").exec
-    exec("~/picam/hooks/stoprecord", (error, stdout, stderr) => {
+    exec("~/bin/stoprecord", (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
