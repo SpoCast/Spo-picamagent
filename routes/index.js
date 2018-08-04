@@ -78,7 +78,7 @@ router.post('/rec', function (req, res, next) {
   const cmd = req.body.command.cmd
   if (cmd === "startRec") {
     const exec = require("child_process").exec
-    exec("~/bin/start_record", (error, stdout, stderr) => {
+    exec("touch ~/picam/hooks/start_record", (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -91,7 +91,7 @@ router.post('/rec', function (req, res, next) {
     })
   } else if (cmd === "stopRec") {
     const exec = require("child_process").exec
-    exec("~/bin/stoprecord", (error, stdout, stderr) => {
+    exec("touch ~/picam/hooks/stop_record", (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
