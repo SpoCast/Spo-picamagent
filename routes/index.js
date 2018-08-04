@@ -12,7 +12,7 @@ router.post('/camera', function (req, res, next) {
   const cmd = req.body.command.cmd
   if (cmd == "startStream") {
     const exec = require("child_process").exec
-    exec("~/bin/startpicamsession.sh " + streamName, (error, stdout, stderr) => {
+    exec("~/bin/startpistreamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -25,7 +25,7 @@ router.post('/camera', function (req, res, next) {
     })
   } else if (cmd == "stopStream") {
     const exec = require("child_process").exec
-    exec("~/bin/stoppicamsession.sh " + streamName, (error, stdout, stderr) => {
+    exec("~/bin/stoppistreamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -45,7 +45,7 @@ router.post('/preview', function (req, res) {
   const streamName = req.body.command.cmdPayload.stream.name
   if (cmd == "startPreview") {
     const exec = require("child_process").exec
-    exec("~/bin/startpistreamsession.sh " + streamName, (error, stdout, stderr) => {
+    exec("~/bin/startpicamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         //res.json({statusCode:200});
@@ -60,7 +60,7 @@ router.post('/preview', function (req, res) {
     })
   } else {
     const exec = require("child_process").exec
-    exec("~/bin/stoppistreamsession.sh "+streamName, (error, stdout, stderr) => {
+    exec("~/bin/stoppicamsession.sh "+streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
