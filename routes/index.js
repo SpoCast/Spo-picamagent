@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 const shell = require('shelljs');
 
 /* GET home page. */
@@ -55,12 +56,12 @@ router.post('/preview', function (req, res) {
 
         res.json(stderr);
       } else {
-        res.json({statusCode:200});
+        res.json({ statusCode: 200 });
       }   //do whatever here
     })
   } else {
     const exec = require("child_process").exec
-    exec("~/bin/stoppicamsession.sh "+streamName, (error, stdout, stderr) => {
+    exec("~/bin/stoppicamsession.sh " + streamName, (error, stdout, stderr) => {
       if (error) {
         console.log('Error', error)
         res.json(stdout);
@@ -119,4 +120,31 @@ router.get('/ack', function (req, res, next) {
 
 })
 
+router.post('/graphics', function (req, res) {
+  var text = req.body.graphics.text
+  var font = req.body.graphics.fontFamily
+  var fontSize = req.body.graphics.fontSize
+  var element = req.body.graphics.element
+  var content = ""
+  content = content + "text=" + text + "\nfont_name = " + font + "\npt=" + fontSize
+  if (element === "timer") {
+    fs.writeFile('./graphics/timer', content, function (err) {
+      if (err) throw err;
+      res.json("Saved")
+      const exec = require("child_process").exec
+      exec("cat ./graphics/timer > ~/picam/hooks/subtitle", (error, stdout, stderr) => {
+        if (error) {
+          console.log('Error', error)
+          res.json(stdout);
+        } else if (stderr) {
+          console.log('Error', stderr)
+          res.json(stderr);
+        } else {
+          res.json(stdout);
+        }   //do whatever here
+      })
+    });
+  }
+
+})
 module.exports = router;
