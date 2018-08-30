@@ -126,11 +126,11 @@ router.post('/graphics', function (req, res) {
   var fontSize = req.body.graphics.fontSize
   var element = req.body.graphics.element
   var content = ""
-  content = content + "text=" + text + "\nfont_name = " + font + "\npt=" + fontSize
+  content = content + "text="+ text + "\nfont_name="+ font +"\npt=" + fontSize
   if (element === "timer") {
     fs.writeFile('./graphics/timer', content, function (err) {
       if (err) throw err;
-      res.json("Saved")
+    
       const exec = require("child_process").exec
       exec("cat ./graphics/timer > ~/picam/hooks/subtitle", (error, stdout, stderr) => {
         if (error) {
